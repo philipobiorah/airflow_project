@@ -4,7 +4,7 @@ import datetime as dt
 
 weather_data_list = [] 
 
-def get_weather_data():
+def run_weather_etl():
 
     #api_url = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=775ce95223886fd4d68d7401358687d5"
     api_url = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=775ce95223886fd4d68d7401358687d5"
@@ -39,4 +39,4 @@ def get_weather_data():
     
     
     
-get_weather_data()
+run_weather_etl()

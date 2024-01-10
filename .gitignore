@@ -1,3 +1,5 @@
 text.txt
 venv
 .env
+weather_airflow_project_t3medium_key_pair.pem
+current_weather_data.csv
