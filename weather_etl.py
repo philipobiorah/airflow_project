@@ -1,10 +1,11 @@
 import requests
 import pandas as pd
 import datetime as dt
+import os
 
-weather_data_list = [] 
 
 def run_weather_etl():
+    weather_data_list = [] 
 
     #api_url = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=775ce95223886fd4d68d7401358687d5"
     api_url = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=775ce95223886fd4d68d7401358687d5"
@@ -34,9 +35,12 @@ def run_weather_etl():
 
     df = pd.DataFrame(weather_data_list)
 
-    print(df)
-    df.to_csv('current_weather_data.csv')
-    
-    
-    
+    # Check if file exists to determine if header is needed
+    file_exists = os.path.isfile('current_weather_data.csv')
+
+    # Append data to CSV file
+    df.to_csv('current_weather_data.csv', mode='a', header=not file_exists, index=False)
+
+    # df.to_csv('s3://philip-airflow-weather-bucket/current_weather_data.csv')
+
 run_weather_etl()
