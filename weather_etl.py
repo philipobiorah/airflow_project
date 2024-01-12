@@ -4,12 +4,13 @@ import datetime as dt
 import os
 import boto3
 from io import StringIO
+from dotenv import load_dotenv
 
 def run_weather_etl():
+    load_dotenv()
+    api_url = os.environ.get('API_URL')
     weather_data_list = [] 
 
-    #api_url = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=775ce95223886fd4d68d7401358687d5"
-    api_url = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=775ce95223886fd4d68d7401358687d5"
     #Make the API call
     response = requests.get(api_url)
 
@@ -44,7 +45,7 @@ def run_weather_etl():
     # df.to_csv('current_weather_data.csv', mode='a', header=not file_exists, index=False)
 
 
-
+    #print(df)
 
     #S3 Bucket and file name
     bucket = 'philip-airflow-weather-bucket'
